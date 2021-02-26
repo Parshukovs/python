@@ -1,6 +1,5 @@
 import socket
 import datetime
-import json
 import psutil
 from collections import namedtuple
 
@@ -12,8 +11,7 @@ class Server ():
     
     def send (self):
         with socket.create_connection((self.server_addr, self.port), self.timeout) as sock:
-            data = {"CPU" : psutil.cpu_percent(), 
-            "RAM" : psutil.virtual_memory().used}
+            data = str(psutil.cpu_percent()) + " " + str(psutil.virtual_memory().used)
             sock.sendall(data)
             print ("Data sent")
             answer = sock.recv(1024)
