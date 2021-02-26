@@ -20,6 +20,6 @@ class Server ():
                 #тут будет обработка ошибок. Когда-нибудь.
                 pass
 
-#if __name__ == "__main__":
-    #home = Server ("esty.ml", 9090, 5)
-    #home.send()
+if __name__ == "__main__":
+    home = Server ("127.0.0.1", 9090, 5)
+    home.send()
