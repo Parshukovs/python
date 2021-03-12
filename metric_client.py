@@ -12,14 +12,15 @@ class Server ():
     def send (self):
         with socket.create_connection((self.server_addr, self.port), self.timeout) as sock:
             data = str(psutil.cpu_percent()) + " " + str(psutil.virtual_memory().used)
-            sock.sendall(data)
+            sock.send(bytes(data,"UTF-8"))
             print ("Data sent")
             answer = sock.recv(1024)
-            print (answer)
+            if answer:
+                print (answer)
             if answer != "OK":
                 #тут будет обработка ошибок. Когда-нибудь.
                 pass
 
 if __name__ == "__main__":
-    home = Server ("127.0.0.1", 9090, 5)
+    home = Server ("localhost", 9090, 5)
     home.send()
